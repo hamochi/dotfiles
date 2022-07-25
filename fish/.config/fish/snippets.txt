@@ -1,0 +1,20 @@
+Show free disk space;df -h
+What is my ip;curl ifconfig.me
+Weather;curl wttr.in
+Get DNS Records A-record, MX-record, NS-record DIG;dig @8.8.8.8 portfoliobox.net ANY +noall +answer
+Reverse DNS lookup;dig -x portfoliobox.net +short
+Download from S3;aws s3 cp --recursive s3://my_s3_bucket .
+Curl POST JSON;curl -X POST www.somewhere.com -H 'Content-Type: application/json' -d '{"key": "value"}'
+Watch log file;watch -n 1 tail file.txt
+List all services, systemctl;sudo systemctl list-unit-files --type service --all
+Start service;sudo systemctl start serviceName
+Stop service;sudo systemctl stop serviceName
+Enable service;sudo systemctl enable serviceName
+Check status of service;sudo systemctl status serviceName
+Stop service;sudo systemctl stop serviceName
+Disable service;sudo systemctl disable serviceName
+Change user password;passwd
+Symbolic link, simlink;ln -s file_or_folder linkname
+Send file to remote machine, scp;scp ~/some_local_file root@192.1.1.1:/remote/folder 
+Send filder with files to remote machine, scp;scp -r ~/local_folder root@192.1.1.1:/remote/folder
+Download file from remote machine, scp; scp root@192.1.1.1:/remote/file.txt ~/Downloads

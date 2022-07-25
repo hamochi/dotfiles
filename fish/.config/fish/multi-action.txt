@@ -1,0 +1,5 @@
+Delete,x
+Move,x
+Copy,x
+Backup,x
+Zip,x

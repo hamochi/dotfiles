@@ -1,0 +1,10 @@
+Edit,lvim
+Goto folder,__gotoFolder
+Backup,backup
+Move,__move
+Copy,copy
+Rename,__rename
+Delete,rm -i
+Zip with password,__zip
+Upload,x
+Info,info
