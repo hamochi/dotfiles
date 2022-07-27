@@ -37,6 +37,7 @@ lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 vim.cmd("inoremap <C-s> <ESC>:w<CR>")
+lvim.keys.normal_mode["<C-a>"] = "ggVG"
 lvim.keys.normal_mode["<F5>"] = ":GoRun<cr>"
 lvim.keys.normal_mode["<C-tab>"] = ":BufferLineCycleNext<cr>"
 lvim.keys.normal_mode["<C-S-tab>"] = ":BufferLineCyclePrev<cr>"
