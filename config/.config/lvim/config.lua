@@ -95,6 +95,14 @@ lvim.builtin.which_key.mappings["a"] = {
   b = { "<cmd>GoDebugBreakpoint<cr>", "Breakpoint" },
   d = { "<cmd>GoDebugStart<cr>", "Debug" },
 }
+
+lvim.builtin.which_key.mappings.b.n = {
+  "<cmd>tabnew<cr>", "New buffer"
+}
+
+lvim.builtin.which_key.mappings.b.v = {
+  "<cmd>vnew<cr>", "New vertical split buffer"
+}
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
