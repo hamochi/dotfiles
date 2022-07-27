@@ -7,7 +7,7 @@ set -U fish_user_paths $HOME/.local/bin $HOME/Applications $fish_user_paths
 ### EXPORT ###
 set fish_greeting                                 # Supresses fish's intro message
 set TERM "xterm-256color"                         # Sets the terminal type
-
+set EDITOR lvim
 ### SET MANPAGER
 ### Uncomment only one of these!
 
@@ -277,15 +277,11 @@ function fe
     set fd_command fd . $PWD
     set fzf_command fzf --ansi -m --preview "__fe_preview {}" --header "<F1> All | <F3> Folders | <F3> Search | <F4> Select" --bind "f1:reload($exa_all),f2:reload($exa_folder),f3:reload($fd_command)"
     set output (FZF_DEFAULT_COMMAND="$exa_all" $fzf_command | string split0 | string escape) 
-    # set test1 (string escape $output)
-    # set test2 (string split "\n" $test1)
-    # set lines (echo $output | wc -l)
-    # # echo -e $output
-    # echo $test2
-    # echo $test2[1]
-    # # echo $lines
-    # break
-    if not test $lines = "1"  
+    echo $output
+    set c (count $output)
+    set c (math "$c - 1")
+    set output $output[1..$c]
+    if not test (count $output) = "1"  
       echo "multi line selected"
       echo $output
       break
@@ -293,9 +289,10 @@ function fe
     if not test -n "$output" #if esc
       break
     else if not test -e $output #if file or folder does not exist, output of exa
-      set newOutput (echo $output | __fe_coln 8)
+      set newOutput (echo $output[1] | __fe_coln 8)
       if not test -d $newOutput #if file
         echo $newOutput
+        echo $output
         break
       else #if folder
         cd $newOutput
@@ -313,7 +310,7 @@ end
 
 function __fe_coln
   while read -l input
-    echo (string trim -r -c " " (echo $input | awk '{ s = ""; for (i = '$argv[1]'; i <= NF; i++) s = s $i " "; print s }'))
+    echo (string replace -a "'" "" (echo $input | awk '{ s = ""; for (i = '$argv[1]'; i <= NF; i++) s = s $i " "; print s }'))
   end
 end
 

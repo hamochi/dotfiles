@@ -1,0 +1,11 @@
+{
+  "err": {
+    "prefix": "errf",
+    "body": [
+      "if err != nil {
+      return err
+    }"
+  ],
+  "description": "retun error"
+}
+}
