@@ -1,11 +1,19 @@
 # Dotfiles 
 
 1. Install GNU Stow
-2. To add dotfiles for example for fish, inside of the dotfiles folder, run: 
+2. Run: 
 ```
-stow fish
+stow config
 ```
 To see what stow will do (simulation) run
 ```
-stow -nv fish
+stow -nv config
+```
+To unstow
+```
+stow --delete config
+```
+To restow (unstow and restow again)
+```
+stow --restow config
 ```
