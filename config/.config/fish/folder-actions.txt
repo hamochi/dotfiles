@@ -1,9 +1,0 @@
-Goto
-Backup
-Move
-Copy
-Rename
-Delete
-Zip with password
-Upload
-Info
