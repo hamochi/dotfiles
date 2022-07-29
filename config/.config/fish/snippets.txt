@@ -18,3 +18,4 @@ Symbolic link, simlink;ln -s file_or_folder linkname
 Send file to remote machine, scp;scp ~/some_local_file root@192.1.1.1:/remote/folder 
 Send filder with files to remote machine, scp;scp -r ~/local_folder root@192.1.1.1:/remote/folder
 Download file from remote machine, scp; scp root@192.1.1.1:/remote/file.txt ~/Downloads
+Scan network for devices;sudo nmap -sn 192.168.1.0/24
