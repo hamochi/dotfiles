@@ -79,6 +79,7 @@ alias doas="doas --"
 
 # navigation
 alias ..='cd ..'
+alias D='cd ~/Downloads'
 
 # Changing "ls" to "exa"
 alias ls='exa -al --color=always --group-directories-first --icons' # my preferred listing
