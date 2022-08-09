@@ -56,19 +56,17 @@ bind -Minsert '$' __history_previous_command_arguments
 # Function for handling snippets
 function __snippets
   set SNIPPET $HOME/.config/fish/snippets.txt
-  set insert (rg (__awk $SNIPPET 1 | fzf --preview "rg {} $SNIPPET | __awk 2 | dotacat" --height=5% --min-height=5 --preview-window=top:20%,border-sharp) $SNIPPET | __awk 2)
+  set fzf_args --height=5% --min-height=5 --preview-window=top:20%,border-sharp 
+  set insert (rg ( awk -F ';' "{print \$1}" $SNIPPET | \
+    fzf --preview "rg {} $SNIPPET |
+    awk -F ';' '{print \$2}' | dotacat" \
+    $fzf_args) \
+    $SNIPPET | \
+    awk -F ';' "{print \$2}")
   commandline -i $insert
 end
 bind -Minsert \cx __snippets
 
-
-function __awk
-  if not set -q argv[2]
-    awk -F ';' "{print \$$argv[1]}"
-  else
-    awk -F ';' "{print \$$argv[2]}" $argv[1]
-  end
-end
 
 ### ALIASES ###
 # alias clear='/bin/clear; echo; colorscript random'
