@@ -43,7 +43,9 @@ lvim.keys.normal_mode["<F5>"] = ":GoRun<cr>"
 lvim.keys.normal_mode["<C-tab>"] = ":BufferLineCycleNext<cr>"
 lvim.keys.normal_mode["<C-S-tab>"] = ":BufferLineCyclePrev<cr>"
 lvim.keys.normal_mode["<C-CR>"] = ":vsplit<cr>"
-lvim.keys.normal_mode["<C-q>"] = ":q!<cr>"
+lvim.keys.normal_mode["<Enter>"] = "o<ESC>"
+lvim.keys.normal_mode["<S-Enter>"] = "O<ESC>"
+lvim.keys.normal_mode["<BS>"] = "dd"
 -- lvim.builtin.lualine.sections.lualine_x = { "os.date('%a')", 'data', "require'lsp-status'.status()" }
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
