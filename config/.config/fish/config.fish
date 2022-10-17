@@ -67,7 +67,6 @@ function __snippets
 end
 bind -Minsert \cx __snippets
 
-
 ### ALIASES ###
 # alias clear='/bin/clear; echo; colorscript random'
 alias clear='/bin/clear; echo; seq 30 | sort --random-sort | spark | dotacat'

@@ -18,12 +18,17 @@ lvim.colorscheme = "dracula"
 lvim.lsp.diagnostics.virtual_text = false
 vim.opt.relativenumber = true
 vim.opt.cmdheight = 1
+vim.opt.tabstop = 4
+vim.opt.expandtab = false
+-- vim.o.guifont = "Inconsolata Nerd Font"
+vim.o.guifont = "JetBrainsMono Nerd Font"
+-- vim.opt.foldmethod = "syntax"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
 -- LunaLine
 local function Time()
-  return '[' .. os.date("%H:%M%") .. ']]'
+	return '[' .. os.date("%H:%M%") .. ']]'
 end
 
 lvim.builtin.lualine.sections.lualine_z = { 'location', Time, components.scrollbar }
@@ -46,6 +51,7 @@ lvim.keys.normal_mode["<C-CR>"] = ":vsplit<cr>"
 lvim.keys.normal_mode["<Enter>"] = "o<ESC>"
 lvim.keys.normal_mode["<S-Enter>"] = "O<ESC>"
 lvim.keys.normal_mode["<BS>"] = "dd"
+lvim.keys.normal_mode["<C-d>"] = "yy p"
 -- lvim.builtin.lualine.sections.lualine_x = { "os.date('%a')", 'data', "require'lsp-status'.status()" }
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
@@ -83,28 +89,28 @@ lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<cr>", "Project
 --   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Wordspace Diagnostics" },
 -- }
 lvim.builtin.which_key.mappings["t"] = {
-  name = "+Terminal",
-  f = { "<cmd>ToggleTerm<cr>", "ToggleTerm Float" },
-  h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "ToggleTerm Horizontal Split" },
-  l = { "<cmd>TermExec cmd='lazygit'<cr>", "ToggleTerm LazyGit" },
-  n = { "<cmd>TermExec cmd='node'<cr>", "ToggleTerm Node" },
-  p = { "<cmd>TermExec cmd='python'<cr>", "ToggleTerm Python" },
-  v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "ToggleTerm Vertical Split" },
-  t = { "<cmd>TermExec cmd='htop'<cr>", "ToggleTerm htop" },
+	name = "+Terminal",
+	f = { "<cmd>ToggleTerm<cr>", "ToggleTerm Float" },
+	h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "ToggleTerm Horizontal Split" },
+	l = { "<cmd>TermExec cmd='lazygit'<cr>", "ToggleTerm LazyGit" },
+	n = { "<cmd>TermExec cmd='node'<cr>", "ToggleTerm Node" },
+	p = { "<cmd>TermExec cmd='python'<cr>", "ToggleTerm Python" },
+	v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "ToggleTerm Vertical Split" },
+	t = { "<cmd>TermExec cmd='htop'<cr>", "ToggleTerm htop" },
 }
 
 lvim.builtin.which_key.mappings["a"] = {
-  name = "+Go",
-  b = { "<cmd>GoDebugBreakpoint<cr>", "Breakpoint" },
-  d = { "<cmd>GoDebugStart<cr>", "Debug" },
+	name = "+Go",
+	b = { "<cmd>GoDebugBreakpoint<cr>", "Breakpoint" },
+	d = { "<cmd>GoDebugStart<cr>", "Debug" },
 }
 
 lvim.builtin.which_key.mappings.b.n = {
-  "<cmd>tabnew<cr>", "New buffer"
+	"<cmd>tabnew<cr>", "New buffer"
 }
 
 lvim.builtin.which_key.mappings.b.v = {
-  "<cmd>vnew<cr>", "New vertical split buffer"
+	"<cmd>vnew<cr>", "New vertical split buffer"
 }
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -117,19 +123,19 @@ lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 lvim.builtin.lualine.style = "lvim"
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
-  "bash",
-  "c",
-  "javascript",
-  "json",
-  "lua",
-  "python",
-  "typescript",
-  "tsx",
-  "css",
-  "rust",
-  "java",
-  "yaml",
-  "go"
+	"bash",
+	"c",
+	"javascript",
+	"json",
+	"lua",
+	"python",
+	"typescript",
+	"tsx",
+	"css",
+	"rust",
+	"java",
+	"yaml",
+	"go"
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -198,39 +204,39 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
-  { "folke/tokyonight.nvim" },
-  {
-    "folke/trouble.nvim",
-    cmd = "TroubleToggle",
-  },
-  {
-    "ggandor/lightspeed.nvim",
-    event = "BufRead",
-  },
-  {
-    "folke/todo-comments.nvim",
-    event = "BufRead",
-    config = function()
-      require("todo-comments").setup()
-    end
-  },
-  { "fatih/vim-go" },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "BufRead",
-    setup = function()
-      vim.g.indentLine_enabled = 1
-      vim.g.indent_blankline_char = "▏"
-      vim.g.indent_blankline_filetype_exclude = { "help", "terminal", "dashboard" }
-      vim.g.indent_blankline_buftype_exclude = { "terminal" }
-      vim.g.indent_blankline_show_trailing_blankline_indent = false
-      vim.g.indent_blankline_show_first_indent_level = false
-    end
-  },
-  { "Mofiqul/dracula.nvim" },
-  { "Mofiqul/vscode.nvim" },
-  { "rafamadriz/neon" },
-  { "khaveesh/vim-fish-syntax" }
+	{ "folke/tokyonight.nvim" },
+	{
+		"folke/trouble.nvim",
+		cmd = "TroubleToggle",
+	},
+	{
+		"ggandor/lightspeed.nvim",
+		event = "BufRead",
+	},
+	{
+		"folke/todo-comments.nvim",
+		event = "BufRead",
+		config = function()
+			require("todo-comments").setup()
+		end
+	},
+	{ "fatih/vim-go" },
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		event = "BufRead",
+		setup = function()
+			vim.g.indentLine_enabled = 1
+			vim.g.indent_blankline_char = "▏"
+			vim.g.indent_blankline_filetype_exclude = { "help", "terminal", "dashboard" }
+			vim.g.indent_blankline_buftype_exclude = { "terminal" }
+			vim.g.indent_blankline_show_trailing_blankline_indent = false
+			vim.g.indent_blankline_show_first_indent_level = false
+		end
+	},
+	{ "Mofiqul/dracula.nvim" },
+	{ "Mofiqul/vscode.nvim" },
+	{ "rafamadriz/neon" },
+	{ "khaveesh/vim-fish-syntax" }
 
 }
 
