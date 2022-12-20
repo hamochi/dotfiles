@@ -21,3 +21,5 @@ Download file from remote machine, scp; scp root@192.1.1.1:/remote/file.txt ~/Do
 Scan network for devices;sudo nmap -sn 192.168.1.0/24
 Wifi scan;nmcli dev wifi
 Wifi - connect;nmcli d wifi connect "SSID/BSSID" password "wifipassword"
+Tailscale Send File;tailscale file cp <files> <name-or-ip>
+Tailscale Receive File;sudo tailscale file get ~/Downloads

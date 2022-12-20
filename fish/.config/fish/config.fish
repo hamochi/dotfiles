@@ -56,7 +56,7 @@ bind -Minsert '$' __history_previous_command_arguments
 # Function for handling snippets
 function __snippets
   set SNIPPET $HOME/.config/fish/snippets.txt
-  set fzf_args --height=5% --min-height=5 --preview-window=top:20%,border-sharp 
+  set fzf_args --height=40% --min-height=5 --preview-window=top:20%,border-sharp 
   set insert (rg ( awk -F ';' "{print \$1}" $SNIPPET | \
     fzf --preview "rg {} $SNIPPET |
     awk -F ';' '{print \$2}' | dotacat" \
@@ -122,5 +122,7 @@ alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
 # termbin
 alias tb="nc termbin.com 9999"
 
+# tmux
+alias tmux="tmux -u"
 ### SETTING THE STARSHIP PROMPT ###
 starship init fish | source
