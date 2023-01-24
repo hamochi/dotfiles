@@ -24,6 +24,7 @@ lvim.keys.normal_mode["<S-CR>"] = "O<ESC>"
 lvim.keys.normal_mode["<Del>"] = "diw"
 lvim.keys.normal_mode["<C-d>"] = "yy p"
 
+lvim.builtin.treesitter.rainbow.enable = true
 lvim.builtin.which_key.mappings["o"] = { "<cmd>NvimTreeFocus<cr>", "Focus Explorer" }
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<cr>", "Projects" }
 
@@ -49,6 +50,9 @@ lvim.lsp.buffer_mappings.normal_mode['gP'] = {
 }
 lvim.lsp.buffer_mappings.normal_mode['gR'] = {
 	"<cmd>lua require('goto-preview').goto_preview_references()<cr>", "Preview Reference"
+}
+lvim.lsp.buffer_mappings.normal_mode['gS'] = {
+	"<cmd>SymbolsOutline<cr>", "Show Symbols"
 }
 
 -- TODO: User Config for predefined plugins
@@ -141,10 +145,87 @@ lvim.plugins = {
 				remove_fold_markers = true,
 			}
 		end
-	}
+	},
+	{
+		"simrat39/symbols-outline.nvim",
+		config = function()
+			require('symbols-outline').setup {
+				show_guides = false,
+				show_symbol_details = false,
+				symbol_blacklist = {
+					'File',
+					'Module',
+					'Namespace',
+					'Package',
+					-- 'Class',
+					-- 'Method',
+					'Property',
+					'Field',
+					'Constructor',
+					-- 'Enum',
+					-- 'Interface',
+					-- 'Function',
+					'Variable',
+					'Constant',
+					'String',
+					'Number',
+					'Boolean',
+					'Array',
+					'Object',
+					'Key',
+					'Null',
+					'EnumMember',
+					-- 'Struct',
+					'Event',
+					'Operator',
+					'TypeParameter',
+					'Component',
+					'Fragment',
+				}
+			}
+		end
+	},
+	{
+		"p00f/nvim-ts-rainbow",
+	},
+	{
+		"ray-x/lsp_signature.nvim",
+		event = "BufRead",
+		config = function() require "lsp_signature".on_attach({
 
+				bind = true, -- This is mandatory, otherwise border config won't get registered.
+				handler_opts = {
+					border = "rounded"
+				}
+			})
+		end,
+	},
+
+	{ "zbirenbaum/copilot.lua",
+		event = { "VimEnter" },
+		config = function()
+			vim.defer_fn(function()
+				require("copilot").setup {
+					plugin_manager_path = get_runtime_dir() .. "/site/pack/packer",
+					suggestion = { enabled = false },
+					panel = { enabled = false },
+				}
+			end, 100)
+		end,
+	},
+
+	{ "zbirenbaum/copilot-cmp",
+		after = { "copilot.lua", "nvim-cmp" },
+		config = function()
+			require("copilot_cmp").setup()
+		end
+	},
 }
 
+
+-- Can not be placed into the config method of the plugins.
+lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"
+table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
 -- VIM-GO SETTINGS
 vim.cmd("let g:go_def_mapping_enabled = 0")
 --
